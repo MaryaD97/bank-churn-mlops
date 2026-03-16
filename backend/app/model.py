@@ -2,6 +2,7 @@
 # Import Libraries
 # ======================================
 
+import os
 import pickle
 import pandas as pd
 
@@ -10,12 +11,17 @@ import pandas as pd
 # Load Saved Model and Scaler
 # ======================================
 
-with open("../churn_model.pkl", "rb") as f:
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+model_path = os.path.join(BASE_DIR, "churn_model.pkl")
+scaler_path = os.path.join(BASE_DIR, "scaler.pkl")
+
+
+with open(model_path, "rb") as f:
     model = pickle.load(f)
 
-with open("../scaler.pkl", "rb") as f:
+with open(scaler_path, "rb") as f:
     scaler = pickle.load(f)
-
 
 # ======================================
 # Numerical Columns Used in Scaling
